@@ -2,6 +2,11 @@ package org.foodrev.planner_json_interface.Helpers;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.support.design.widget.Snackbar;
+import android.util.Log;
+import android.view.View;
+
+import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
@@ -14,15 +19,19 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.foodrev.planner_json_interface.GsonModels.GsonTemplate;
+
 /**
  * Created by magulo on 5/30/16.
  */
 public class JSONAsync extends AsyncTask<String, Void, String> {
 
     private Context context;
+    private View view;
 
-    public JSONAsync(Context context) {
+    public JSONAsync(Context context,View view) {
         this.context = context;
+        this.view = view;
     }
 
     @Override
@@ -70,7 +79,22 @@ public class JSONAsync extends AsyncTask<String, Void, String> {
         return null;
     }
 
+    //update UI here
     protected void onPostExecute(String result) {
+
+        Snackbar.make(view, result, Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+    }
+    public String createGson() {
+        final Gson gson = new Gson();
+
+        // original object instantiation
+        GsonTemplate modelObject = new GsonTemplate("myname", 12, "honda");
+
+        // converting an object to json object
+        String json = gson.toJson(modelObject);
+        Log.d("TEST","Converted JSON string is : " + json);
+        return json;
     }
 }
 

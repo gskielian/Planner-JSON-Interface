@@ -47,10 +47,10 @@ public class ScrollPlanActivity extends AppCompatActivity {
             //todo write retrieveStream() which will do an http request on the firebase
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, createGson(), Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //Snackbar.make(view, createGson(), Snackbar.LENGTH_LONG)
+                 //       .setAction("Action", null).show();
                     //readMessageFromFirebase();
-                new JSONAsync(getApplicationContext()).execute();
+                new JSONAsync(getApplicationContext(), view).execute();
             }
         });
     }
