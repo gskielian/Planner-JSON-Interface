@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "809452687124",
+    "firebase_url": "https://planner-json-interface.firebaseio.com",
+    "project_id": "planner-json-interface",
+    "storage_bucket": "planner-json-interface.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:809452687124:android:312b6640db9bf47b",
+        "android_client_info": {
+          "package_name": "org.foodrev.planner_json_interface"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "809452687124-4utgcq4u71ettnkp3dsud6uhi08uf4rv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3QpITXBKadSUIKxrxTKMEl47yuiZVmoc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
