@@ -32,7 +32,7 @@ public class JSONAsync extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... urls) {
-        return doGet("http://www.foodrev.org");
+        return doGet("https://planner-json-interface.firebaseio.com/rest.json");
     }
     /**
      * @param in
