@@ -5,6 +5,8 @@ import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -14,6 +16,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
 
+import org.foodrev.planner_json_interface.R;
+import org.foodrev.planner_json_interface.ScrollPlanActivity;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
@@ -33,11 +37,11 @@ import org.foodrev.planner_json_interface.GsonModels.GsonTemplate;
 public class JSONAsync extends AsyncTask<String, Void, String> {
 
     private Context context;
-    private View view;
-
-    public JSONAsync(Context context,View view) {
+    private ListView listView;
+    private ArrayAdapter<String> adapter;
+    public JSONAsync(Context context,ListView listView) {
         this.context = context;
-        this.view = view;
+        this.listView = listView;
     }
 
     @Override
@@ -87,11 +91,28 @@ public class JSONAsync extends AsyncTask<String, Void, String> {
     }
 
     //update UI here
-    protected void onPostExecute(String result) throws JsonParseException{
+    protected void onPostExecute(String result){
      Gson gson = new Gson();
 
+
+//        String[] arrayString = {"hello world", "hi"};
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(parse(result) + "\n");
+        sb.append(parse(result));
+        String[] arrayString = {"b","c","d"};
+
+        adapter = new ArrayAdapter<>(this.context, android.R.layout.simple_list_item_1, arrayString);
+
+        listView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+
+
+
+
 //     Snackbar.make(view,parse(gson.toJson(result)), Snackbar.LENGTH_LONG)
-     Snackbar.make(view,parse(result), Snackbar.LENGTH_LONG)
+     Snackbar.make(listView,parse(result), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
     }
 
