@@ -8,7 +8,11 @@ import android.view.View;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonParser;
 
 import org.json.JSONObject;
 
@@ -43,7 +47,7 @@ public class JSONAsync extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... urls) {
-        return doGet("https://planner-json-interface.firebaseio.com/rest.json");
+        return doGet("https://planner-json-interface.firebaseio.com/Plans.json");
     }
     /**
      * @param in
@@ -55,7 +59,7 @@ public class JSONAsync extends AsyncTask<String, Void, String> {
         StringBuilder sb = new StringBuilder();
         String line = null;
         while ((line = br.readLine()) != null) {
-            sb.append(line + "\n");
+            sb.append(line);
         }
         System.out.println(sb.toString());
         br.close();
@@ -83,11 +87,28 @@ public class JSONAsync extends AsyncTask<String, Void, String> {
     }
 
     //update UI here
-    protected void onPostExecute(String result) {
+    protected void onPostExecute(String result) throws JsonParseException{
      Gson gson = new Gson();
-     Snackbar.make(view, gson.toJson(result), Snackbar.LENGTH_LONG)
+
+//     Snackbar.make(view,parse(gson.toJson(result)), Snackbar.LENGTH_LONG)
+     Snackbar.make(view,parse(result), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
     }
+
+    public String parse(String jsonLine) {
+        JsonElement jelement = new JsonParser().parse(jsonLine);
+        JsonObject jobject = jelement.getAsJsonObject();
+        jobject = jobject.getAsJsonObject("Plan_A");
+        String result = jobject.get("center_a").toString();
+//        JsonElement jelement = new JsonParser().parse(jsonLine);
+//        JsonObject jobject = jelement.getAsJsonObject();
+//        jobject = jobject.getAsJsonObject("data");
+//        JsonArray jarray = jobject.getAsJsonArray("translations");
+//        jobject = jarray.get(0).getAsJsonObject();
+//        String result = jobject.get("translatedText").toString();
+        return result;
+    }
+
     public String createGson() {
         final Gson gson = new Gson();
 
