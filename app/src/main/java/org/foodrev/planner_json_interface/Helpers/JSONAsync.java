@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
 
 import org.json.JSONObject;
 
@@ -72,6 +74,7 @@ public class JSONAsync extends AsyncTask<String, Void, String> {
                 e.printStackTrace();
             } finally {
                 urlConnection.disconnect();
+
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -81,8 +84,8 @@ public class JSONAsync extends AsyncTask<String, Void, String> {
 
     //update UI here
     protected void onPostExecute(String result) {
-
-        Snackbar.make(view, result, Snackbar.LENGTH_LONG)
+     Gson gson = new Gson();
+     Snackbar.make(view, gson.toJson(result), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
     }
     public String createGson() {

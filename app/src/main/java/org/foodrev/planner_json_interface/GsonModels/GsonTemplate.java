@@ -13,4 +13,9 @@ public class GsonTemplate {
         this.meals = meals;
         this.carType = carType;
     }
+    public GsonTemplate() {
+        this.name = "name";
+        this.meals = 200;
+        this.carType = "carType";
+    }
 }
