@@ -82,6 +82,7 @@ public class JSONAsync extends AsyncTask<String, Void, String> {
 // "demand_init":[["loc3", 200]]}'
 
         doPut2("https://planner-json-interface.firebaseio.com/Plans.json");
+//        doPut2("http://ec2-52-25-100-113.us-west-2.compute.amazonaws.com:5000/plan");
         return "request sent";
     }
     /**
@@ -462,7 +463,7 @@ public class JSONAsync extends AsyncTask<String, Void, String> {
             httpcon.setDoOutput(true);
             httpcon.setRequestProperty("Content-Type", "application/json");
             httpcon.setRequestProperty("Accept", "application/json");
-            httpcon.setRequestMethod("POST");
+            httpcon.setRequestMethod("PUT");
             httpcon.connect();
 
 //Write
